@@ -1,0 +1,37 @@
+  <h1> Create, Edit, or Delete a Product Here </h1>
+    <div > 
+        <h2>Add Product</h2>
+        <form ng-submit="addProduct()">
+            <span>Title: </span><input type="text" ng-model="newProduct.title" required>
+            <span>Description: </span><input type="text" ng-model="newProduct.description" required>
+            <span>Price: </span><input type="number" ng-model="newProduct.price" required>
+            <input type="submit" value="Create Product">   
+        </form>
+        <div ng-if="loading" style=" color: white; background-color: gray; height: 80px; width: 120px; position: absolute; left: 50%; top: 50%; text-align: center;" >Loading...</div>
+    </div>
+
+        <h2>Edit Product</h2>
+        <input placeholder="type to filter..." />
+        <div ng-repeat="product in products">
+            <span> {{product.title}}</span>
+            <button ng-click="showEditing(product)">Toggle Edit</button>
+            <form ng-submit="editProduct()" ng-show="product.edit">  
+                <span>Title: </span><input type="text" ng-model="productToChange.title">
+                <span>Description: </span><input type="text" ng-model="productToChange.description">
+                <span>Price: </span><input type="number" ng-model="productToChange.price">
+                <input type="submit" value="Submit Edit">
+            </form> 
+        </div>
+
+        <h2>Delete Product</h2>
+        <div ng-repeat="product in products">
+            <span> {{product.title}} </span>
+            <button ng-click="showProductToDelete(product)">Show Product</button>
+             <form ng-submit="deleteProduct()" ng-show="product.delete">  
+                <span>Title: </span><input type="text" ng-model="productToDelete.title">
+                <span>Description: </span><input type="text" ng-model="productToDelete.description">
+                <span>Price: </span><input type="number" ng-model="productToDelete.price">
+                <input type="submit" value="Delete">
+            </form> 
+        </div>
+      
